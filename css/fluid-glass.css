@@ -839,24 +839,25 @@
 }
 
 .filter-bar-glass .filter-label {
-  font-size: 0.62rem;
-  letter-spacing: 3px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(200, 200, 200, 0.35);
+  color: rgba(220, 220, 235, 0.7);
   margin-right: 0.5rem;
 }
 
 .filter-bar-glass .filter-btn {
-  font-size: 0.72rem;
-  letter-spacing: 1px;
-  padding: 0.45rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1.3rem;
   border-radius: 40px;
   border: none;
   background: transparent;
-  color: rgba(200, 200, 210, 0.5);
+  color: rgba(220, 220, 235, 0.6);
   cursor: pointer;
   transition: all 0.35s ease;
-  font-weight: 400;
 }
 
 .filter-bar-glass .filter-btn:hover {
