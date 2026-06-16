@@ -15,6 +15,14 @@ jobs:
         with:
           lfs: true
 
+      - name: Pull LFS files
+        run: |
+          git lfs pull
+          echo "=== LFS files ==="
+          git lfs ls-files -s
+          echo "=== Video sizes ==="
+          ls -lh assets/works/daomadan/hero-video.mp4 assets/works/anim-1/video.mp4 assets/works/cyberpunk-city/hero-video.mp4 2>/dev/null || true
+
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
