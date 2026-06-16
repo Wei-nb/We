@@ -170,15 +170,16 @@
 
 /* 分类标题 */
 .bubble-cat-label {
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 600;
     letter-spacing: -0.5px;
     line-height: 1.1;
 }
 
 /* 分类副标题 */
 .bubble-cat-sub {
-    font-size: clamp(0.65rem, 1.2vw, 0.8rem);
-    color: rgba(200, 200, 200, 0.4);
+    font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+    color: rgba(210, 210, 220, 0.5);
     font-weight: 300;
     letter-spacing: 0.5px;
     margin-top: 2px;
