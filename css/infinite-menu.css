@@ -1,0 +1,263 @@
+/* ========================================
+   InfiniteMenu — 匹配 reactbits.dev 原始样式
+   ======================================== */
+
+/* ── Section 容器 ── */
+.infinite-menu-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: transparent;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Stage 层 (canvas + 浮层容器) ── */
+.infinite-menu-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* canvas 填满 stage */
+.infinite-menu-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 兜底提示 */
+.infinite-menu-stage .fallback-msg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.85rem;
+}
+
+/* ── 顶部标题区 ── */
+.infinite-menu-header {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+  text-align: center;
+}
+
+.infinite-menu-tag {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(232, 90, 60, 0.55);
+  margin-bottom: 0.6rem;
+}
+
+.infinite-menu-title {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #e8e8ec;
+  line-height: 1.15;
+  margin: 0 0 0.25rem;
+}
+
+.infinite-menu-desc {
+  font-size: 0.7rem;
+  color: rgba(180, 180, 190, 0.4);
+  margin: 0;
+}
+
+/* ── 底部拖拽提示 ── */
+.infinite-menu-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(232, 90, 60, 0.45);
+  pointer-events: none;
+  animation: hintPulse 3s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
+}
+
+/* ── 底部信息浮层 (face-title / face-description / action-button) ── */
+.face-title {
+  position: absolute;
+  z-index: 5;
+  bottom: 6.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+  font-weight: 700;
+  color: #e8e8ec;
+  letter-spacing: -0.3px;
+  text-align: center;
+  max-width: 75vw;
+  text-shadow: 0 2px 14px rgba(0,0,0,.65);
+  margin: 0;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.face-title.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.face-title.inactive {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.face-description {
+  position: absolute;
+  z-index: 5;
+  bottom: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: rgba(200, 200, 215, 0.6);
+  text-align: center;
+  max-width: 55vw;
+  line-height: 1.55;
+  text-shadow: 0 1px 10px rgba(0,0,0,.5);
+  margin: 0;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.face-description.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.face-description.inactive {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+}
+
+/* ── Fallback 卡片（WebGL 不可用时）── */
+.infinite-menu-stage.fallback-active {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 15% 10%;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.infinite-menu-fallback-card {
+  display: block;
+  width: 200px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  transition: all 0.35s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fallbackIn 0.5s ease forwards;
+}
+
+.infinite-menu-fallback-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(232, 90, 60, 0.3);
+}
+
+.fallback-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.fallback-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background: rgba(232, 90, 60, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(232, 90, 60, 0.6);
+  font-size: 2rem;
+}
+
+.fallback-info {
+  padding: 12px 14px;
+}
+
+.fallback-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e8e8ec;
+  margin-bottom: 4px;
+}
+
+.fallback-desc {
+  font-size: 0.72rem;
+  color: rgba(180, 180, 190, 0.55);
+  line-height: 1.4;
+}
+
+@keyframes fallbackIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  .infinite-menu-section {
+    min-height: 500px;
+  }
+
+  .infinite-menu-header {
+    top: 5%;
+  }
+
+  .infinite-menu-tag {
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+  }
+
+  .infinite-menu-title {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .infinite-menu-desc {
+    font-size: 0.6rem;
+  }
+
+  .infinite-menu-hint {
+    bottom: 1.5rem;
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+  }
+
+  .face-title {
+    bottom: 5.5rem;
+    font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+    max-width: 85vw;
+  }
+
+  .face-description {
+    bottom: 3.8rem;
+    font-size: 0.68rem;
+    max-width: 70vw;
+  }
+}

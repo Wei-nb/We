@@ -1,0 +1,83 @@
+/* ========================================
+   Glitch Text — 故障文字动效
+   源自 reactbits.dev/text-animations/glitch-text
+   适配品牌色方案
+   ======================================== */
+
+.glitch {
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+  pointer-events: auto;
+}
+
+.glitch::after,
+.glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+/* === 默认模式：持续播放 === */
+.glitch:not(.glitch-hover)::before {
+  left: -3px;
+  text-shadow: var(--glitch-shadow-before, 3px 0 #e85a3c);
+  animation: glitch-animate var(--glitch-duration-before, 2.5s) infinite linear alternate-reverse;
+}
+
+.glitch:not(.glitch-hover)::after {
+  left: 3px;
+  text-shadow: var(--glitch-shadow-after, -3px 0 #ff6b4a);
+  animation: glitch-animate var(--glitch-duration-after, 3s) infinite linear alternate-reverse;
+}
+
+/* === Hover 模式：悬停触发 === */
+.glitch.glitch-hover::after,
+.glitch.glitch-hover::before {
+  opacity: 0;
+  animation: none;
+}
+
+.glitch.glitch-hover:hover::before {
+  opacity: 1;
+  left: -3px;
+  text-shadow: var(--glitch-shadow-before, 3px 0 #e85a3c);
+  animation: glitch-animate var(--glitch-duration-before, 2.5s) infinite linear alternate-reverse;
+}
+
+.glitch.glitch-hover:hover::after {
+  opacity: 1;
+  left: 3px;
+  text-shadow: var(--glitch-shadow-after, -3px 0 #ff6b4a);
+  animation: glitch-animate var(--glitch-duration-after, 3s) infinite linear alternate-reverse;
+}
+
+@keyframes glitch-animate {
+  0%   { clip-path: inset(20% 0 50% 0); }
+  5%   { clip-path: inset(10% 0 60% 0); }
+  10%  { clip-path: inset(15% 0 55% 0); }
+  15%  { clip-path: inset(25% 0 35% 0); }
+  20%  { clip-path: inset(30% 0 40% 0); }
+  25%  { clip-path: inset(40% 0 20% 0); }
+  30%  { clip-path: inset(10% 0 60% 0); }
+  35%  { clip-path: inset(15% 0 55% 0); }
+  40%  { clip-path: inset(25% 0 35% 0); }
+  45%  { clip-path: inset(30% 0 40% 0); }
+  50%  { clip-path: inset(20% 0 50% 0); }
+  55%  { clip-path: inset(10% 0 60% 0); }
+  60%  { clip-path: inset(15% 0 55% 0); }
+  65%  { clip-path: inset(25% 0 35% 0); }
+  70%  { clip-path: inset(30% 0 40% 0); }
+  75%  { clip-path: inset(40% 0 20% 0); }
+  80%  { clip-path: inset(20% 0 50% 0); }
+  85%  { clip-path: inset(10% 0 60% 0); }
+  90%  { clip-path: inset(15% 0 55% 0); }
+  95%  { clip-path: inset(25% 0 35% 0); }
+  100% { clip-path: inset(30% 0 40% 0); }
+}

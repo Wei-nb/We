@@ -1,0 +1,228 @@
+/* ========================================
+   Bubble Categories — 气泡胶囊分类导航
+   源自 reactbits.dev/components/bubble-menu
+   ======================================== */
+
+.categories-section {
+    padding: 10rem 0;
+    background: transparent;
+    position: relative;
+    overflow: visible;
+}
+
+.bubble-cats-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    row-gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: stretch;
+}
+
+.bubble-cat-col {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex: 0 0 calc(50%);
+    box-sizing: border-box;
+    padding: 0 8px;
+}
+
+/* 2-col center alignment when only 2 items in last row */
+.bubble-cat-col:nth-child(3):nth-last-child(2) {
+    margin-left: 25%;
+}
+
+.bubble-cat-link {
+    --pill-bg: rgba(18, 18, 26, 0.45);
+    --pill-color: #fff;
+    --pill-border: rgba(255, 255, 255, 0.12);
+    --item-rot: 0deg;
+    --hover-bg: #e85a3c;
+    --hover-color: #ffffff;
+
+    width: 100%;
+    min-height: 180px;
+    padding: clamp(2rem, 4vw, 4rem) 0;
+    font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1;
+    border-radius: 999px;
+    background: var(--pill-bg);
+    color: var(--pill-color);
+    text-decoration: none;
+    border: 1px solid var(--pill-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    will-change: transform, opacity;
+    box-sizing: border-box;
+    overflow: hidden;
+    transform: rotate(var(--item-rot));
+}
+
+/* 禁用 CSS transition（物理引擎接管 transform，避免冲突） */
+.bubble-cat-link,
+.bubble-cat-link:hover,
+.bubble-cat-link:active {
+    transition:
+        background 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        color 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* 停稳后由 JS 恢复 transform transition 用于 hover */
+.bubble-cat-link.physics-done {
+    transition:
+        background 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        color 0.35s ease,
+        transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* 旧入场态 — 不再使用，留空防止冲突 */
+
+/* 每个分类的单独颜色 */
+.bubble-cat-link[data-cat="modeling"] {
+    --hover-bg: #e85a3c;
+    --hover-color: #ffffff;
+}
+
+.bubble-cat-link[data-cat="scenedesign"] {
+    --hover-bg: #3b82f6;
+    --hover-color: #ffffff;
+}
+
+.bubble-cat-link[data-cat="animation"] {
+    --hover-bg: #10b981;
+    --hover-color: #ffffff;
+}
+
+.bubble-cat-link[data-cat="other"] {
+    --hover-bg: #8b5cf6;
+    --hover-color: #ffffff;
+}
+
+/* 悬停效果 */
+@media (hover: hover) {
+    .bubble-cat-link:hover {
+        background: var(--hover-bg);
+        color: var(--hover-color);
+        box-shadow:
+            0 12px 40px rgba(0, 0, 0, 0.4),
+            0 0 60px rgba(232, 90, 60, 0.12);
+        border-color: transparent;
+    }
+
+    /* 停稳后恢复 hover 放大 */
+    .bubble-cat-link.physics-done:hover {
+        transform: rotate(var(--item-rot)) scale(1.04);
+    }
+}
+
+.bubble-cat-link:active {
+    transform: rotate(var(--item-rot)) scale(0.96);
+}
+
+/* 气泡内部微光 */
+.bubble-cat-link::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 35%;
+    height: 30%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.bubble-cat-link:hover::before {
+    opacity: 0;
+}
+
+/* 分类编号 */
+.bubble-cat-num {
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(232, 90, 60, 0.5);
+    transition: color 0.35s ease;
+    order: -1;
+}
+
+.bubble-cat-link:hover .bubble-cat-num {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 分类标题 */
+.bubble-cat-label {
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+/* 分类副标题 */
+.bubble-cat-sub {
+    font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+    color: rgba(200, 200, 200, 0.4);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    transition: color 0.35s ease;
+}
+
+.bubble-cat-link:hover .bubble-cat-sub {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============ 响应式 ============ */
+@media (max-width: 899px) {
+    .bubble-cat-col {
+        flex: 0 0 100%;
+        margin-left: 0 !important;
+    }
+
+    .bubble-cat-link {
+        min-height: 110px;
+        padding: clamp(1.2rem, 3vw, 2rem) 0;
+        font-size: clamp(1.2rem, 5vw, 2.5rem);
+    }
+
+    .bubble-cat-link.physics-done:hover {
+        transform: scale(1.04);
+    }
+
+    .bubble-cat-link:active {
+        transform: scale(0.96);
+    }
+}
+
+@media (max-width: 600px) {
+    .categories-section {
+        padding: 6rem 0;
+    }
+
+    .bubble-cats-list {
+        padding: 0 12px;
+        row-gap: 14px;
+    }
+
+    .bubble-cat-link {
+        min-height: 90px;
+        padding: clamp(1rem, 2.5vw, 1.5rem) 0;
+    }
+}
