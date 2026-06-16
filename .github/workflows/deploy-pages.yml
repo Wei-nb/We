@@ -5,31 +5,39 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
 
-      - name: Pull LFS and remove tracking
+      - name: Pull LFS and clean for deploy
         run: |
           git lfs pull
-          echo "=== LFS files ==="
-          git lfs ls-files -s
-          echo "=== Checking video sizes ==="
+          echo "=== Video sizes ==="
           ls -lh assets/works/daomadan/hero-video.mp4 assets/works/anim-1/video.mp4 assets/works/cyberpunk-city/hero-video.mp4 2>/dev/null || true
-
-      - name: Deploy to gh-pages branch
-        run: |
-          rm -f .gitattributes
+          # Remove git tracking so Pages artifact is clean files
+          rm -f .gitattributes .gitmodules
           rm -rf .git
-          git init
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Deploy $(date -u +%Y%m%d-%H%M%S)"
-          git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:gh-pages
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
