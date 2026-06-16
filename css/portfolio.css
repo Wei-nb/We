@@ -96,20 +96,53 @@
     font-weight: 600;
 }
 
-/* 子分类 */
+/* 子分类 — 带掉落展开动画 */
 .sub-filters {
     display: flex;
     gap: 0.45rem;
     flex-wrap: wrap;
+    max-height: 300px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+                opacity 0.3s ease,
+                margin-top 0.35s ease;
+    margin-top: 0;
 }
 
 .sub-filters .filter-btn {
     font-size: 0.75rem;
     padding: 0.3rem 0.85rem;
+    animation: subFilterDrop 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
+/* 每个子分类按钮的掉落动画 */
+@keyframes subFilterDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 给每个按钮设置随机般递增的延迟 */
+.sub-filters .filter-btn:nth-child(1) { animation-delay: 0.02s; }
+.sub-filters .filter-btn:nth-child(2) { animation-delay: 0.06s; }
+.sub-filters .filter-btn:nth-child(3) { animation-delay: 0.10s; }
+.sub-filters .filter-btn:nth-child(4) { animation-delay: 0.14s; }
+.sub-filters .filter-btn:nth-child(5) { animation-delay: 0.18s; }
+.sub-filters .filter-btn:nth-child(6) { animation-delay: 0.22s; }
+.sub-filters .filter-btn:nth-child(7) { animation-delay: 0.26s; }
+.sub-filters .filter-btn:nth-child(8) { animation-delay: 0.30s; }
+
 .sub-filters.hidden {
-    display: none;
+    max-height: 0;
+    opacity: 0;
+    margin-top: -0.3rem;
+    pointer-events: none;
 }
 
 /* ========================================
