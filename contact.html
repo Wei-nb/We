@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系 | 卫笑笑</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/target-cursor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">WX<span>.</span></a>
+            <button class="hamburger" id="hamburger" aria-label="菜单">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="portfolio.html" class="nav-link">作品集</a></li>
+                <li><a href="about.html" class="nav-link">关于</a></li>
+                <li><a href="contact.html" class="nav-link active">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="contact-header reveal">
+        <h1>联系我</h1>
+        <p>无论是合作邀请、项目咨询还是单纯的艺术交流，<br>都欢迎随时与我取得联系。</p>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="contact-main">
+        <!-- 左侧：联系表单 -->
+        <div class="contact-form-card reveal">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" name="name" placeholder="您的称呼" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">主题</label>
+                    <input type="text" id="subject" name="subject" placeholder="关于什么？">
+                </div>
+                <div class="form-group">
+                    <label for="message">留言</label>
+                    <textarea id="message" name="message" placeholder="请输入您的消息..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    发送消息
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- 右侧：联系方式 -->
+        <div class="contact-info-cards">
+            <div class="info-card reveal">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="info-text">
+                    <h4>电子邮件</h4>
+                    <a href="mailto:example@email.com">example@email.com</a>
+                </div>
+            </div>
+
+            <div class="info-card reveal">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s-8-5.373-8-12A8 8 0 0112 2a8 8 0 018 8c0 6.627-8 12-8 12z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="info-text">
+                    <h4>位置</h4>
+                    <p>中国 · 数字媒体艺术2班</p>
+                </div>
+            </div>
+
+            <div class="info-card reveal">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="info-text">
+                    <h4>响应时间</h4>
+                    <p>通常在24小时内回复</p>
+                </div>
+            </div>
+
+            <div class="info-card reveal">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div class="info-text">
+                    <h4>合作类型</h4>
+                    <p>建模 / 场景设计 / 动画制作 / 概念设计</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 社交媒体 -->
+        <section class="social-section">
+            <div class="social-divider">
+                <span>或通过社交媒体找到我</span>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon-link" aria-label="Email">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+                <a href="#" class="social-icon-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                </a>
+                <a href="#" class="social-icon-link" aria-label="Bilibili">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.579 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.995 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .653.124.92.373.249.249.373.551.373.907 0 .355-.124.657-.373.906L17.813 4.653zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.38.561.38.933s-.127.684-.38.933c-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.374-.561-.374-.933s.125-.684.374-.933c.249-.25.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.38.561.38.933s-.127.684-.38.933c-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.374-.561-.374-.933s.125-.684.374-.933c.249-.25.56-.373.933-.373z"/></svg>
+                </a>
+                <a href="#" class="social-icon-link" aria-label="ArtStation">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 002.197 1.393h12.106l-2.79-4.898H0zM15.453 10.31l-2.86-5.007H2.735l2.86 5.007h9.858zm1.305 2.268L24 17.72H14.95l-3.67-6.432 5.478 1.29z"/></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 卫笑笑. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/target-cursor.js"></script>
+</body>
+</html>

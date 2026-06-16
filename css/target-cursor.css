@@ -1,0 +1,104 @@
+/* ============================================
+   Target Cursor — 四角锁定光标特效
+   来源: reactbits.dev/animations/target-cursor
+   ============================================ */
+
+:root {
+  --target-cursor-dot-color: #e85a3c;
+  --target-cursor-corner-color: #e85a3c;
+  --target-cursor-z-index: 9999;
+}
+
+/* 启用 Target Cursor 时隐藏系统光标 */
+html.target-cursor-enabled,
+html.target-cursor-enabled * {
+  cursor: none !important;
+}
+
+/* ── 光标容器 ── */
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: var(--target-cursor-z-index);
+}
+
+/* ── 旋转层 ── */
+.target-cursor-rotor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  will-change: transform;
+}
+
+/* ── 中心圆点 ── */
+.target-cursor-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--target-cursor-dot-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  box-shadow: 0 0 14px rgba(232, 90, 60, 0.5);
+}
+
+/* ── 四角边框 ── */
+.target-cursor-corner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2.5px solid var(--target-cursor-corner-color);
+  will-change: transform;
+  filter: drop-shadow(0 0 8px rgba(232, 90, 60, 0.45));
+  border-radius: 2px;
+}
+
+/* 默认四角位置（形成小菱形围绕中心圆点） */
+.target-cursor-corner.corner-tl {
+  transform: translate(-160%, -160%);
+  border-right: none;
+  border-bottom: none;
+}
+
+.target-cursor-corner.corner-tr {
+  transform: translate(60%, -160%);
+  border-left: none;
+  border-bottom: none;
+}
+
+.target-cursor-corner.corner-br {
+  transform: translate(60%, 60%);
+  border-left: none;
+  border-top: none;
+}
+
+.target-cursor-corner.corner-bl {
+  transform: translate(-160%, 60%);
+  border-right: none;
+  border-top: none;
+}
+
+/* 移动端隐藏 */
+@media (max-width: 768px) {
+  .target-cursor-wrapper,
+  .target-cursor-rotor,
+  .target-cursor-dot,
+  .target-cursor-corner {
+    display: none !important;
+  }
+
+  html.target-cursor-enabled,
+  html.target-cursor-enabled * {
+    cursor: auto !important;
+  }
+}

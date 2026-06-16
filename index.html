@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卫笑笑 | 数字媒体艺术作品集</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/cubes.css">
+    <link rel="stylesheet" href="css/glitch-text.css">
+    <link rel="stylesheet" href="css/bubble-categories.css">
+    <link rel="stylesheet" href="css/fluid-glass.css">
+    <link rel="stylesheet" href="css/infinite-menu.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/target-cursor.css">
+    <link rel="stylesheet" href="css/smooth-transitions.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+            "gl-matrix": "/node_modules/gl-matrix/esm/index.js",
+            "ogl": "/node_modules/ogl/src/index.js"
+        }
+    }
+    </script>
+</head>
+<body data-scroll-container>
+    <!-- Central Geometry 中心几何体背景 -->
+    <div class="central-geometry-container" id="centralGeometryContainer"></div>
+
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-logo">
+            <span class="loading-logo-text">WX.</span>
+        </div>
+        <div class="loading-tagline">Architect worlds that move hearts and spark hope.</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">WX<span>.</span></a>
+            <button class="hamburger" id="hamburger" aria-label="菜单">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link active" data-scramble>Home</a></li>
+                <li><a href="#works" class="nav-link" data-scramble>Works</a></li>
+                <li><a href="#lightWorks" class="nav-link" data-scramble>Featured</a></li>
+                <li><a href="#categories" class="nav-link" data-scramble>Categories</a></li>
+                <li><a href="#about" class="nav-link" data-scramble>About</a></li>
+                <li><a href="contact.html" class="nav-link" data-scramble>Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 右侧滚动进度指示器 -->
+    <div class="scroll-progress" id="scrollProgress">
+        <div class="sp-section" data-section="hero">
+            <div class="sp-line"><div class="sp-dot"></div></div>
+            <span class="sp-label">TOP</span>
+        </div>
+        <div class="sp-section" data-section="works">
+            <div class="sp-line"><div class="sp-dot"></div></div>
+            <span class="sp-label">WORKS</span>
+        </div>
+        <div class="sp-section" data-section="lightWorks">
+            <div class="sp-line"><div class="sp-dot"></div></div>
+            <span class="sp-label">FEATURED</span>
+        </div>
+        <div class="sp-section" data-section="categories">
+            <div class="sp-line"><div class="sp-dot"></div></div>
+            <span class="sp-label">CATEGORIES</span>
+        </div>
+        <div class="sp-section" data-section="about">
+            <div class="sp-line"><div class="sp-dot"></div></div>
+            <span class="sp-label">ABOUT</span>
+        </div>
+        <div class="sp-active-track" id="spActiveTrack"></div>
+    </div>
+
+    <!-- 首屏 Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-cubes-wrap">
+            <div class="hero-cubes-scene" id="heroCubesScene"></div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <p class="hero-subtitle animate-fade-up">数字媒体艺术 · 作品集</p>
+            <h1 class="hero-title animate-fade-up delay-1">
+                <span class="title-line" data-glitch data-glitch-hover="true" data-glitch-speed="0.6">Architect worlds</span>
+                <span class="title-line" data-glitch data-glitch-hover="true" data-glitch-speed="0.6">that move hearts</span>
+                <span class="title-line accent" data-glitch data-glitch-hover="true" data-glitch-speed="0.6">and spark hope.</span>
+            </h1>
+            <div class="hero-meta animate-fade-up delay-2">
+                <span>卫笑笑</span>
+                <span class="separator">—</span>
+                <span>学号 242803070210</span>
+                <span class="separator">—</span>
+                <span>数字媒体艺术2班</span>
+            </div>
+        </div>
+
+        <p class="hero-hint animate-fade-up delay-3">点击试试</p>
+
+        <div class="scroll-indicator" id="scrollIndicator">
+            <span>scroll to explore →</span>
+        </div>
+    </section>
+
+    <!-- 精选作品 — 倾斜散落卡片 -->
+    <section class="works-section" id="works">
+        <div class="works-bg-title">PROJECTS</div>
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Works</span>
+                <h2 class="section-title">精选作品</h2>
+                <p class="section-desc">Pioneering immersive and experiential digital art.</p>
+            </div>
+            <div class="featured-cards" id="featuredCards">
+                <!-- 动态填充 JS — 6 张倾斜散落卡片 -->
+            </div>
+            <div class="section-footer reveal">
+                <a href="portfolio.html" class="btn-more">
+                    <span data-scramble>More Works</span>
+                    <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M1.5 12.5L12 2M12 12V2H2"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 探索分类 — InfiniteMenu 3D球面无限菜单 -->
+    <section class="infinite-menu-section" id="lightWorks">
+        <div class="infinite-menu-stage" id="infiniteMenuStage"></div>
+        <div class="infinite-menu-header">
+            <span class="infinite-menu-tag">Explore Categories</span>
+            <h2 class="infinite-menu-title">拖拽旋转探索</h2>
+            <p class="infinite-menu-desc">Drag to spin &bull; Select a category to browse</p>
+        </div>
+        <span class="infinite-menu-hint">drag to explore</span>
+    </section>
+
+    <!-- 分类导航 — Bubble 胶囊风格 -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Categories</span>
+                <h2 class="section-title">探索分类</h2>
+                <p class="section-desc">Choose a category to discover more creations.</p>
+            </div>
+            <ul class="bubble-cats-list">
+                <li class="bubble-cat-col">
+                    <a href="portfolio.html?category=modeling" class="bubble-cat-link" data-cat="modeling" style="--item-rot: -2deg;">
+                        <span class="bubble-cat-num">01</span>
+                        <span class="bubble-cat-label">建 模</span>
+                        <span class="bubble-cat-sub">Character · Prop · Environment</span>
+                    </a>
+                </li>
+                <li class="bubble-cat-col">
+                    <a href="portfolio.html?category=scenedesign" class="bubble-cat-link" data-cat="scenedesign" style="--item-rot: 2deg;">
+                        <span class="bubble-cat-num">02</span>
+                        <span class="bubble-cat-label">场景设计</span>
+                        <span class="bubble-cat-sub">Interior · Exterior · Concept</span>
+                    </a>
+                </li>
+                <li class="bubble-cat-col">
+                    <a href="portfolio.html?category=animation" class="bubble-cat-link" data-cat="animation" style="--item-rot: -1.5deg;">
+                        <span class="bubble-cat-num">03</span>
+                        <span class="bubble-cat-label">动 画</span>
+                        <span class="bubble-cat-sub">Character Animation · Motion Graphics</span>
+                    </a>
+                </li>
+                <li class="bubble-cat-col">
+                    <a href="portfolio.html?category=other" class="bubble-cat-link" data-cat="other" style="--item-rot: 2.5deg;">
+                        <span class="bubble-cat-num">04</span>
+                        <span class="bubble-cat-label">其 他</span>
+                        <span class="bubble-cat-sub">Sculpting · Texture Studies</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 关于区域 — Mission/Vision 风格 -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid reveal">
+                <div class="about-label">
+                    <span class="section-tag">About</span>
+                </div>
+                <div class="about-content">
+                    <svg class="about-mission-svg" viewBox="0 0 437 99" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M402 93H383V21h-27V5h73v16h-27v72zM313 94c-20 0-37-8-37-37V5h19v52c0 17 9 22 18 22 11 0 18-6 18-22V5h19v52c0 30-17 37-37 37zM222 94c-28 0-43-20-43-45S195 4 223 4c26 0 42 18 42 45s-15 45-43 45zm1-75c-17 0-23 12-23 29s8 30 23 30 23-14 23-30-7-29-23-29zM139 93H99V5h39c21 0 29 11 29 22 0 10-5 17-11 19 6 2 14 9 14 20 0 16-12 27-31 27zm-3-73h-18v20h18c9 0 12-4 12-10 0-7-5-10-12-10zm-1 35h-17v24h17c11 0 15-5 15-12 0-8-5-12-15-12zM62 73H30l-7 20H4L34 5h24l31 88H70l-8-20zM46 19h-1c-2 9-6 23-11 39h24c-6-19-10-31-12-39z" fill="none" stroke="#e85a3c" stroke-width="1"/>
+                    </svg>
+                    <div class="about-mission-text">
+                        <span class="mission-line"><span class="mission-marker">创造前所未有的</span></span><br>
+                        <span class="mission-line"><span class="mission-marker">沉浸式数字体验</span></span>
+                    </div>
+                    <p class="about-mission-en">
+                        Pioneering immersive <br>
+                        and experiential digital art like no other.
+                    </p>
+                    <div class="about-services">
+                        <div class="service-item reveal">
+                            <span class="service-icon">✦</span>
+                            <div>
+                                <h4>3D 建模</h4>
+                                <p>Character · Prop · Environment — 从概念到高精度模型的全流程制作。</p>
+                            </div>
+                        </div>
+                        <div class="service-item reveal">
+                            <span class="service-icon">✦</span>
+                            <div>
+                                <h4>场景设计</h4>
+                                <p>Interior · Exterior · Concept — 构建具有叙事性的数字空间。</p>
+                            </div>
+                        </div>
+                        <div class="service-item reveal">
+                            <span class="service-icon">✦</span>
+                            <div>
+                                <h4>动画制作</h4>
+                                <p>Character Animation · Motion Graphics — 赋予数字生命以灵魂与节奏。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">WX<span>.</span></a>
+                    <p>Architect worlds that move hearts and spark hope.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>导航</h4>
+                        <a href="#hero">Home</a>
+                        <a href="#works">Works</a>
+                        <a href="#about">About</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>分类</h4>
+                        <a href="portfolio.html?category=modeling">建模</a>
+                        <a href="portfolio.html?category=scenedesign">场景设计</a>
+                        <a href="portfolio.html?category=animation">动画</a>
+                        <a href="portfolio.html?category=other">其他</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>链接</h4>
+                        <a href="portfolio.html">作品集</a>
+                        <a href="about.html">关于我</a>
+                        <a href="contact.html">联系方式</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 卫笑笑. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Email">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hero-interactive.js"></script>
+    <script src="js/glitch-text.js"></script>
+    <script src="js/bubble-categories.js"></script>
+    <script src="js/fluid-glass.js"></script>
+    <script src="js/target-cursor.js"></script>
+    <script src="js/smooth-transitions.js"></script>
+    <script type="module" src="js/central-geometry.js"></script>
+    <script type="module" src="js/infinite-menu-init.js"></script>
+</body>
+</html>

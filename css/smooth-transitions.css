@@ -1,0 +1,127 @@
+/* ========================================
+   Smooth Transitions CSS
+   GSAP ScrollTrigger 驱动的内容揭示动效
+   几何体背景层 + 丝滑过渡
+   ======================================== */
+
+/* ── Central Geometry 中心几何体背景 ──
+   z-index:0 作为页面主视觉几何层
+   通过 Three.js 渲染 wireframe 中心几何体效果
+*/
+.central-geometry-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.central-geometry-container canvas {
+  display: block;
+}
+
+/* 确保内容浮于几何体之上 */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* 导航栏高于所有 */
+.navbar {
+  z-index: 100 !important;
+}
+
+/* Hero 立方体背景 */
+.hero-cubes-wrap {
+  z-index: 1;
+}
+
+/* InfiniteMenu stage canvas 高于背景几何体 */
+.infinite-menu-stage {
+  z-index: 2;
+}
+
+.infinite-menu-stage canvas {
+  z-index: 2;
+}
+
+/* ── 性能优化：will-change ── */
+.hero-content {
+  will-change: transform, opacity;
+}
+
+.hero-cubes-wrap {
+  will-change: transform, opacity;
+}
+
+.works-bg-title {
+  will-change: transform, opacity;
+}
+
+.bubble-cat-col {
+  will-change: transform, opacity;
+}
+
+.about-mission-svg {
+  will-change: transform, opacity;
+}
+
+.infinite-menu-tag,
+.infinite-menu-title,
+.infinite-menu-desc {
+  will-change: transform, opacity;
+}
+
+/* ── section 间距优化 ── */
+.works-section,
+.infinite-menu-section,
+.categories-section,
+.about-section {
+  padding-top: clamp(60px, 8vw, 120px);
+  padding-bottom: clamp(60px, 8vw, 120px);
+}
+
+/* ── 消除板块间黑色分隔线 ──
+   每个板块底部加一层微渐变遮罩，与背景自然衔接，
+   避免透明section交界处露出深色body背景产生"黑线"感
+*/
+.works-section::after,
+.infinite-menu-section::after,
+.categories-section::after,
+.about-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 15vh;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(10, 6, 6, 0.06) 40%,
+    rgba(10, 6, 6, 0.12) 100%
+  );
+  z-index: 0;
+}
+
+/* 板块顶部也做柔和过渡 */
+.works-section::before,
+.infinite-menu-section::before,
+.categories-section::before,
+.about-section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 12vh;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(10, 6, 6, 0.08) 50%,
+    rgba(10, 6, 6, 0.14) 100%
+  );
+  z-index: 0;
+}

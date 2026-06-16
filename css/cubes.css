@@ -1,0 +1,86 @@
+/* ========================================
+   3D 立方体网格 — 基于 reactbits.dev 官方 Cubes 组件
+   面片使用 translateX/Y(50%) 比例定位，无需 JS 计算深度
+   ======================================== */
+
+:root {
+    --col-gap: 2%;
+    --row-gap: 2%;
+    --cube-perspective: 2000px;
+}
+
+/* 外层包裹 — 提供 overflow 裁剪 */
+.hero-cubes-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* 网格容器 — CSS Grid + 透视 */
+.hero-cubes-scene {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    column-gap: var(--col-gap);
+    row-gap: var(--row-gap);
+    perspective: var(--cube-perspective);
+    grid-auto-rows: 1fr;
+}
+
+/* 单个 Cube */
+.cube {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    transform-style: preserve-3d;
+}
+
+/* 扩大点击区域 */
+.cube::before {
+    content: '';
+    position: absolute;
+    top: -36px;
+    right: -36px;
+    bottom: -36px;
+    left: -36px;
+}
+
+/* 六个面的基础样式 */
+.cube-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cube-face-bg, #0d0d14);
+    border: var(--cube-face-border, 1px solid rgba(255,255,255,0.06));
+    box-shadow: var(--cube-face-shadow, none);
+    opacity: 1;
+}
+
+/* === 六面定位 — 深度由立方体尺寸 50% 决定（等比自适应） === */
+
+.cube-face--top {
+    transform: translateY(-50%) rotateX(90deg);
+}
+
+.cube-face--bottom {
+    transform: translateY(50%) rotateX(-90deg);
+}
+
+.cube-face--left {
+    transform: translateX(-50%) rotateY(-90deg);
+}
+
+.cube-face--right {
+    transform: translateX(50%) rotateY(90deg);
+}
+
+/* 前后两面最终呈现相同朝向（官方版设计） */
+.cube-face--back,
+.cube-face--front {
+    transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+}

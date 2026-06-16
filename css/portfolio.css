@@ -1,0 +1,205 @@
+/* ========================================
+   作品集页面 — Fluid Glass 风格
+   ======================================== */
+
+/* ── 页面标题 ── */
+.page-header-glass {
+    max-width: 1280px;
+    margin: calc(var(--nav-height) + 4rem) auto 2rem;
+    padding: 3rem 3rem 2.5rem;
+    text-align: center;
+}
+
+.page-header-glass h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -2px;
+    color: #f0f0f0;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 3;
+}
+
+.page-header-sub {
+    font-size: 0.95rem;
+    color: rgba(200, 200, 210, 0.45);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 3;
+}
+
+/* ========================================
+   筛选栏 — Fluid Glass
+   ======================================== */
+.filter-bar-glass {
+    position: sticky;
+    top: calc(var(--nav-height) + 0.5rem);
+    z-index: 50;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.filter-inner {
+    position: relative;
+    z-index: 3;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.filter-row {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-label {
+    color: rgba(200, 200, 210, 0.4);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    min-width: fit-content;
+    margin-right: 0.25rem;
+}
+
+.filter-btn {
+    padding: 0.4rem 1.1rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(220, 220, 230, 0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    border-color: rgba(232, 90, 60, 0.3);
+    color: rgba(230, 230, 240, 0.8);
+    background: rgba(232, 90, 60, 0.06);
+}
+
+.filter-btn.active {
+    background: rgba(232, 90, 60, 0.15);
+    border-color: rgba(232, 90, 60, 0.4);
+    color: #e85a3c;
+    font-weight: 600;
+}
+
+/* 子分类 */
+.sub-filters {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.sub-filters .filter-btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.85rem;
+}
+
+.sub-filters.hidden {
+    display: none;
+}
+
+/* ========================================
+   作品网格
+   ======================================== */
+.portfolio-grid {
+    max-width: 1280px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.75rem;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 8rem 2rem;
+    color: rgba(200, 200, 210, 0.3);
+}
+
+.empty-state svg {
+    width: 64px;
+    height: 64px;
+    stroke: rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.5rem;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   reveal 动画
+   ======================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   响应式
+   ======================================== */
+@media (max-width: 900px) {
+    .page-header-glass {
+        margin: calc(var(--nav-height) + 2rem) 1rem 1.5rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .filter-bar-glass {
+        margin: 0 1rem 2rem;
+        border-radius: 14px;
+    }
+
+    .filter-inner {
+        padding: 1rem 1.25rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.25rem;
+        padding: 0 1.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .filter-row {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .filter-row::-webkit-scrollbar { display: none; }
+
+    .sub-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .sub-filters::-webkit-scrollbar { display: none; }
+}
