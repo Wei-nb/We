@@ -583,6 +583,23 @@
     transform: translateX(2px) translateY(-2px);
 }
 
+/* 精选作品滑动提示 */
+.featured-swipe-hint {
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: rgba(180, 180, 190, 0.4);
+    margin-top: 1.5rem;
+    pointer-events: none;
+    user-select: none;
+    animation: swipeHintPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes swipeHintPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.7; }
+}
+
 /* ============ Categories 区域 ============ */
 .categories-section {
     padding: 8rem 0;
