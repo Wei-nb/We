@@ -25,9 +25,22 @@ jobs:
           echo "=== Removing .gitattributes so videos are pushed as real files ==="
           rm -f .gitattributes
 
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          force_orphan: true
-          enable_jekyll: false
+      - name: Deploy to gh-pages
+        run: |
+          # Remove .gitattributes so LFS rules don't interfere
+          rm -f .gitattributes
+          
+          # Remove existing git (which has LFS tracking)
+          rm -rf .git
+          
+          # Start fresh git repo - videos are now real files, no LFS
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy"
+          
+          echo "=== Video files in commit ==="
+          git ls-tree -r HEAD --long | grep -E '\.mp4$' | head -20
+          
+          git push --force origin HEAD:gh-pages
