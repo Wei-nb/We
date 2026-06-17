@@ -7,7 +7,7 @@ echo This will upload all files including large videos (LFS).
 echo It may take several minutes depending on your internet speed.
 echo.
 cd /d "d:\Desktop\web"
-git push -u origin master
+git push -u origin main
 echo.
 echo ========================================
 echo   Push completed! Check your repo at:
